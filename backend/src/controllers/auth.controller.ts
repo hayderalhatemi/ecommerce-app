@@ -4,7 +4,7 @@ import User from '../models/user.model';
 import { RegisterInput, LoginInput } from '../schemas/auth.schema';
 
 // Generate jwt token
-const generateToken = (id: string, role: string): => {
+const generateToken = (id: string, role: string): string => {
     return jwt.sign({ id, role }, process.env.JWT_SECRET as string, { expiresIn: '7d'});
 };
 
