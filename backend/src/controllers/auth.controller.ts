@@ -16,4 +16,13 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         res.status(400).json({ message: 'Email already in use' });
         return;
     }
+
+    const user = await User.create({ name, email, password });
+    res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        token: generateToken(user._id.toString(), user.role),
+    });
 }
