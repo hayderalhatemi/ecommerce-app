@@ -17,4 +17,4 @@ export const loginSchema = z.object({
 
 // Reusable inferred types
 export type RegisterInput = z.infer<typeof registerSchema>['body'];
-export type loginInput = z.infer<typeof loginSchema>['body'];
+export type LoginInput = z.infer<typeof loginSchema>['body'];
