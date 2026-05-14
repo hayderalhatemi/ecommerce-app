@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import errorHandler from './middlewares/error.middleware';
+import authRoutes from './routes/v1/auth.routes';
 
 dotenv.config();
 connectDB();
@@ -17,6 +18,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
+// v1 routes
+app.use('/api/v1/auth', authRoutes);
 
 // Error handler must be last middleware
 app.use(errorHandler);
