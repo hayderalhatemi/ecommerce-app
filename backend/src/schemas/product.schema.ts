@@ -8,3 +8,16 @@ export const createProductSchema = z.object({
         category: z.coerce.number().int().nonnegative('Stock cannot be negative'),
     }),
 });
+
+export const updateProductSchema = z.object({
+  body: z.object({
+    name: z.string().min(2).optional(),
+    description: z.string().min(10).optional(),
+    price: z.coerce.number().positive().optional(),
+    category: z.string().min(2).optional(),
+    stock: z.coerce.number().int().nonnegative().optional(),
+  }),
+});
+
+export type CreateProductInput = z.infer<typeof createProductSchema>['body'];
+export type updateProductInput = z.infer<typeof updateProductSchema>['body'];
