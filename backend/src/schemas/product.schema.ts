@@ -7,4 +7,4 @@ export const createProductSchema = z.object({
         price: z.coerce.number().positive('Price must be a positive number'),
         category: z.coerce.number().int().nonnegative('Stock cannot be negative'),
     }),
-}),
+});
