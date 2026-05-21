@@ -14,3 +14,8 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
 
   res.status(201).json(product);
 };
+
+export const getProducts = async (req: Request, res: Response): Promise<void> => {
+    const products = await Product.find();
+    res.json(products);
+}
