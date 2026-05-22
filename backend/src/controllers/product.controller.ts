@@ -18,4 +18,13 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
 export const getProducts = async (req: Request, res: Response): Promise<void> => {
     const products = await Product.find();
     res.json(products);
-}
+};
+
+export const getProductById = async (req: Request, res: Response): Promise<void> => {
+  const product = await Product.findById(req.params.id);
+  if (!product) {
+    res.status(404).json({ message: 'Product not found' });
+    return
+  }
+  res.json(product)
+};
