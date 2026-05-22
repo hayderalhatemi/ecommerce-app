@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Product from '../models/product.model';
-import { CreateProductInput, UpdateProductInput } from '../schemas/product.schema';
+import { CreateProductInput, updateProductInput, UpdateProductInput } from '../schemas/product.schema';
 
 export const createProduct = async (req: Request, res: Response): Promise<void> => {
   const body = req.body as CreateProductInput;
@@ -27,4 +27,14 @@ export const getProductById = async (req: Request, res: Response): Promise<void>
     return
   }
   res.json(product)
+};
+
+export const updateProduct = async (req: Request, res: Response): Promise<void> => {
+  const body = req.body as updateProductInput;
+  const product = await Product.findByIdAndUpdate(req.params.id, body, { new: true});
+  if (!product) {
+    res.status(404).json({ message: 'Product not found' });
+    return
+  }
+  res.json(product);
 };
