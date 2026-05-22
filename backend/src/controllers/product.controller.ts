@@ -38,3 +38,12 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
   }
   res.json(product);
 };
+
+export const deleteProduct = async (req: Request, res: Response): Promise<void> => {
+  const product = await Product.findByIdAndDelete(req.params.id);
+  if (!product) {
+    res.status(404).json({ message: 'Product not found' });
+    return;
+  }
+  res.json({ message: 'Product deleted'});
+};
