@@ -11,3 +11,18 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}${ext}`);
   },
 });
+
+// Only allow image files
+const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  const allowed = /jpeg|png|webp/;
+  const ext = path.extname(file.originalname).toLowerCase();
+  if (allowed.test(ext)) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed'));
+  }
+};
+
+const upload = multer({ storage, fileFilter });
+
+export default upload;
