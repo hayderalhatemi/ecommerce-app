@@ -6,6 +6,7 @@ import connectDB from './config/db';
 import errorHandler from './middlewares/error.middleware';
 import authRoutes from './routes/v1/auth.routes';
 import productRoutes from './routes/v1/product.routes';
+import path from 'path';
 
 dotenv.config();
 connectDB();
@@ -14,6 +15,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Serve uploaded images statically
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Health check
 app.get('/', (req, res) => {
