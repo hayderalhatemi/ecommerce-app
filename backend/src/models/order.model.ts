@@ -7,3 +7,16 @@ interface IOrderItem {
     quantity: number;
     image: string;
 }
+
+export interface IOrder extends Document {
+    user: mongoose.Types.ObjectId;
+    items: IOrderItem[];
+    totalPrice: number;
+    status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'canceled';
+    shippingAderess: {
+        address: string;
+        city: string;
+        postalCode: string;
+        country: string;
+    };
+}
