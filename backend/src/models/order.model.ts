@@ -13,7 +13,7 @@ export interface IOrder extends Document {
     items: IOrderItem[];
     totalPrice: number;
     status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'canceled';
-    shippingAderess: {
+    shippingAddress: {
         address: string;
         city: string;
         postalCode: string;
