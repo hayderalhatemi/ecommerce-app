@@ -12,7 +12,7 @@ import { createOrderSchema } from '../../schemas/order.schema';
 const router = Router();
 
 // User routes
-router.post('//', protect, validate(createOrderSchema), createOrder);
+router.post('/', protect, validate(createOrderSchema), createOrder);
 router.get('/my-orders', protect, getMyOrders);
 
 // Admin only routes
