@@ -7,6 +7,7 @@ import errorHandler from './middlewares/error.middleware';
 import authRoutes from './routes/v1/auth.routes';
 import productRoutes from './routes/v1/product.routes';
 import path from 'path';
+import orderRoutes from './routes/v1/order.routes';
 
 dotenv.config();
 connectDB();
@@ -27,8 +28,7 @@ app.get('/', (req, res) => {
 // v1 routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/products', productRoutes);
-
-
+app.use('/api/v1/orders', orderRoutes);
 // Error handler must be last middleware
 app.use(errorHandler);
 
