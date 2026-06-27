@@ -1,4 +1,4 @@
-import { createSlice, PayLoadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthUser {
     _id: string;
