@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { type Document, Schema } from "mongoose";
 
 export interface IProduct extends Document {
   name: string;
@@ -15,13 +15,13 @@ const productSchema = new Schema<IProduct>(
     name: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    image: { type: String, default: '' },
+    image: { type: String, default: "" },
     category: { type: String, required: true },
     stock: { type: Number, required: true, default: 0 },
     // Reference to the admin who created the product
-    createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.model<IProduct>('Product', productSchema);
+export default mongoose.model<IProduct>("Product", productSchema);
