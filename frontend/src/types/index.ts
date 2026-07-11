@@ -23,7 +23,7 @@ export interface Order {
     user: string;
     items: OrderItem[];
     totalPrice: number;
-    status: "pending" | "processing" | "shipped" | "delivered" | 'cancelled';
+    status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
     shippingAdress: {
         address: string;
         city: string;
