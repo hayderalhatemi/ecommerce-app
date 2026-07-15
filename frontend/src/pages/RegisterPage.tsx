@@ -27,4 +27,33 @@ const RegisterPage = () => {
             }
         }
     };
-}
+
+    return (
+        <div className="form-container">
+            <h2>Register</h2>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input id="name" type="text" {...register("name", { required: "Name is required" })} />
+                    {errors.name && <span className="error">{errors.name.message}</span>}
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input id="email" type="email" {...register("email", {required: "Email is required" })} />
+                    {errors.email && <span className="error">{errors.email.message}</span>}
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input id="password" type="password" {...register("password", { required: "Password is required", minLength: { value: 6, message: "Minimum 6 characters" } })} />
+                    {errors.password && <span className="error">{errors.password.message}</span>}
+                </div>
+                <button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Registering..." : "Register"}
+                </button>
+            </form>
+            <p>Already Have an account? <Link to="/login">Login</Link></p>
+        </div>
+    );
+};
+
+export default RegisterPage;
