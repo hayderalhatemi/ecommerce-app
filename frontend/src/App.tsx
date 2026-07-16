@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 const App = () => {
   return (
@@ -8,8 +10,8 @@ const App = () => {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<div>Home Page</div>} />
-          <Route path="/login" element={<div>Login Page</div>} />
-          <Route path="/register" element={<div>Register Page</div>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/products/:id" element={<div>Product Detail Page</div>} />
           <Route path="/cart" element={<div>Cart Page</div>} />
           <Route path="/orders" element={<div>Orders Page</div>} />
