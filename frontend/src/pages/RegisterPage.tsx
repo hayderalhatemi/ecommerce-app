@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useAppDispatch } from "../sotre/hooks";
-import { setUser } from "../sotre/slices/authSlice";
+import { useAppDispatch } from "../store/hooks";
+import { setUser } from "../store/slices/authSlice";
 import api from "../api/axios";
 
 interface RegisterForm {
