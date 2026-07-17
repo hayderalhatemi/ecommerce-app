@@ -57,7 +57,7 @@ const ProductDetailPage = () => {
                 <p className="product-category">{product.category}</p>
                 <p className="product-detail-description">{product.description}</p>
                 <p className="product-price">€{product.price.toFixed(2)}</p>
-                <p className="product-stock">In stock{product.stock}</p>
+                <p className="product-stock">In stock: {product.stock}</p>
                 <div className="quantity-selector">
                     <label htmlFor="quantity">Quantity</label>
                     <input id="quantity"
