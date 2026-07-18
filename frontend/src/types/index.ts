@@ -24,7 +24,7 @@ export interface Order {
     items: OrderItem[];
     totalPrice: number;
     status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
-    shippingAdress: {
+    shippingAddress: {
         address: string;
         city: string;
         postalCode: string;
