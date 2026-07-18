@@ -425,3 +425,59 @@ body {
   background: #f5f5f5;
   border-radius: 4px;
 }
+
+.admin-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #1a1a2e;
+  background: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #1a1a2e;
+}
+
+.tab.active {
+  background: #1a1a2e;
+  color: white;
+}
+
+.admin-table-wrapper {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  background: #1a1a2e;
+  color: white;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.admin-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table select {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
