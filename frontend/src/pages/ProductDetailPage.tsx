@@ -4,6 +4,7 @@ import api from "../api/axios";
 import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
 import type { Product } from "../types";
+import toast from "react-hot-toast";
 
 const ProductDetailPage = () => {
     const { id } = useParams();
@@ -12,7 +13,6 @@ const ProductDetailPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [quantity, setQuantity] = useState(1);
-    const [added, setAdded] = useState(false);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -37,8 +37,7 @@ const ProductDetailPage = () => {
             image: product.image,
             quantity,
         }));
-        setAdded(true);
-        setTimeout(() => setAdded(false), 2000);
+        toast.success("Added to cart!");
     };
 
     if (loading) return <p className="status-msg">Loading...</p>;
@@ -69,7 +68,7 @@ const ProductDetailPage = () => {
                     />
                 </div>
                 <button type="button" className="add-to-cart-btn" onClick={handleAddToCart}>
-                    {added ? "Added!" : "Add to Cart"}
+                    Add to Cart
                 </button>
             </div>
         </div>

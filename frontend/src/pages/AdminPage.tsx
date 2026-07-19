@@ -3,6 +3,7 @@ import { useAppSelector } from "../store/hooks";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import type { Product, Order } from "../types";
+import toast from "react-hot-toast";
 
 const AdminPage = () => {
   const user = useAppSelector((state) => state.auth.user);
@@ -36,6 +37,7 @@ const AdminPage = () => {
     if (!confirm("Delete this product?")) return;
     await api.delete(`/products/${id}`);
     setProducts((prev) => prev.filter((p) => p._id !== id));
+    toast.success("Product deleted.");
   };
 
   const handleStatusChange = async (orderId: string, status: string) => {
@@ -43,6 +45,7 @@ const AdminPage = () => {
     setOrders((prev) =>
       prev.map((o) => (o._id === orderId ? { ...o, status: status as Order["status"] } : o))
     );
+    toast.success("Order status updated.");
   };
 
   if (loading) return <p className="status-msg">Loading...</p>;

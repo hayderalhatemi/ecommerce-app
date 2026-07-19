@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { clearCart } from "../store/slices/cartSlice";
 import api from "../api/axios";
+import toast from "react-hot-toast";
 
 interface ShippingForm {
   address: string;
@@ -31,9 +32,10 @@ const CheckoutPage = () => {
         shippingAddress: data,
       });
       dispatch(clearCart());
+      toast.success("Order placed seccessfully!");
       navigate("/orders");
     } catch {
-      alert("Failed to place order. Please try again.");
+      toast.error("Failed to place order. please try again.")
     }
   };
 

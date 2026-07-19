@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAppDispatch } from "../store/hooks";
 import { setUser } from "../store/slices/authSlice";
 import api from "../api/axios";
+import toast from "react-hot-toast";
 
 interface RegisterForm {
     name: string;
@@ -23,7 +24,7 @@ const RegisterPage = () => {
         } catch (err: unknown) {
             if (err && typeof err === "object" && "response" in err) {
                 const axiosErr = err as { response: { data: { message: string } } };
-                alert(axiosErr.response.data.message);
+                toast.error(axiosErr.response.data.message);
             }
         }
     };
