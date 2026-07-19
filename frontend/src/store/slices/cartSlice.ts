@@ -13,8 +13,9 @@ interface CartState {
   items: CartItem[];
 }
 
+const storedCart = localStorage.getItem("cart")
 const initialState: CartState = {
-  items: [],
+  items: storedCart ? JSON.parse(storedCart) : [],
 };
 
 const cartSlice = createSlice({
@@ -50,6 +51,9 @@ const cartSlice = createSlice({
   },
 });
 
+export const saveCart = (state: CartState) => {
+  localStorage.setItem("cart", JSON.stringify(state.items));
+};
 export const { addToCart, removeFromCart, updateQuantity, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
