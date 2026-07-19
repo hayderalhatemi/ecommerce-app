@@ -8,11 +8,21 @@ import errorHandler from "./middlewares/error.middleware";
 import authRoutes from "./routes/v1/auth.routes";
 import orderRoutes from "./routes/v1/order.routes";
 import productRoutes from "./routes/v1/product.routes";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 connectDB();
 
 const app = express();
+
+app.use(helmet());
+
+app.use(rateLimit({
+  windowMs: 15 * 60 *1000, // minutes
+  max: 100,
+  message: { message: "Too many requests, please try again later."},
+}));
 
 app.use(cors());
 app.use(express.json());
