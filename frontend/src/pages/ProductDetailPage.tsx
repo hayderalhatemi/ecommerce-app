@@ -47,7 +47,7 @@ const ProductDetailPage = () => {
     return (
         <div className="product-detail">
             <img
-            src={`http://localhost:5000${product.image}`}
+            src={`${import.meta.env.VITE_API_BASE}${product.image}`}
             alt={product.name}
             className="product-detail-image"
             />

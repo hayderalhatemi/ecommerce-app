@@ -26,7 +26,7 @@ const CartPage = () => {
       <div className="cart-items">
         {items.map((item) => (
           <div key={item._id} className="cart-item">
-            <img src={`http://localhost:5000${item.image}`} alt={item.name} className="cart-item-image" />
+            <img src={`${import.meta.env.VITE_API_BASE}${item.image}`} alt={item.name} className="cart-item-image" />
             <div className="cart-item-info">
               <h3>{item.name}</h3>
               <p className="product-price">€{item.price.toFixed(2)}</p>
