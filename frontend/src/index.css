@@ -525,3 +525,26 @@ body {
 .search-input:focus {
   border-color: #1a1a2e;
 }
+
+.not-found {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.not-found h2 {
+  font-size: 5rem;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.not-found p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.not-found a {
+  color: #e94560;
+  text-decoration: none;
+  font-weight: 600;
+}
