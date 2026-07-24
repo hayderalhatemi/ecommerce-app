@@ -12,6 +12,7 @@ interface ProductForm {
   price: number;
   category: string;
   stock: number;
+  image: FileList;
 }
 
 const AdminPage = () => {
@@ -65,6 +66,7 @@ const AdminPage = () => {
     formData.append("price", String(data.price));
     formData.append("category", data.category);
     formData.append("stock", String(data.stock));
+    formData.append("image", data.image[0]);
 
     const res = await api.post("/products", formData, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -116,6 +118,16 @@ const AdminPage = () => {
         <label htmlFor="description">Description</label>
         <input id="description" type="text" {...register("description", { required: "Required" })} />
         {errors.description && <span className="error">{errors.description.message}</span>}
+      </div>
+      <div className="form-group">
+        <label htmlFor="image">Product Image</label>
+        <input
+          id="image"
+          type="file"
+          accept="image/png, image/jpeg, image/webp"
+          {...register("image", {required: "Image is required" })}
+        />
+        {errors.image && <span className="error">{errors.image.message}</span>}
       </div>
     </div>
     <button type="submit" disabled={isSubmitting}>

@@ -48,7 +48,7 @@ const HomePage = () => {
         {filtered.map((product) => (
           <Link to={`/products/${product._id}`} key={product._id} className="product-card">
             <img
-              src={`${import.meta.env.VITE_API_BASE}${product.image}`}
+              src={product.image}
               alt={product.name}
               className="product-image"
             />

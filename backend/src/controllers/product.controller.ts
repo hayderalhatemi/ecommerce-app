@@ -14,7 +14,7 @@ export const createProduct = async (
   const product = await Product.create({
     ...body,
     // image path set by Multer, fallback to empty string
-    image: req.file ? `/uploads/${req.file.filename}` : "",
+    image: req.file?.path ?? "",
     createdBy: req.user!.id,
   });
 
