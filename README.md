@@ -2,7 +2,7 @@
 
 A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoDB, and React. Features JWT authentication with role-based access control, product management with image uploads, a shopping cart, and a complete order system.
 
-**Live Demo:** Coming soon
+**Live Demo:** https://ecommerce-app-six-opal.vercel.app/
 **Repository:** https://github.com/hayderalhatemi/ecommerce-app
 
 ---
@@ -11,7 +11,7 @@ A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoD
 
 ### Backend
 - JWT authentication (register/login) with role-based access (`user` / `admin`)
-- Product CRUD with image uploads via Multer
+- Product CRUD with image uploads via Multer, stored on Cloudinary
 - Order creation, order history, and admin order management
 - Request validation with Zod
 - Centralized error handling
@@ -35,7 +35,9 @@ A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoD
 
 ## Tech Stack
 
-**Backend:** Node.js, Express, TypeScript, MongoDB, Mongoose, JWT, Zod, Multer, Helmet, express-rate-limit
+**Backend:** Node.js, Express, TypeScript, MongoDB, Mongoose, JWT, Zod, Multer, Cloudinary, Helmet, express-rate-limit
+
+**Deployment:** Render (backend), Vercel (frontend), MongoDB Atlas, Cloudinary
 
 **Frontend:** React, TypeScript, Vite, React Router, Redux Toolkit, Axios, React Hook Form, react-hot-toast
 
@@ -83,6 +85,9 @@ Create a `.env` file in `backend/`:
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
 ```bash
@@ -135,8 +140,9 @@ Full API documentation coming soon (Swagger/OpenAPI).
 
 ## Roadmap
 
-- [ ] Deploy backend to Render
-- [ ] Deploy frontend to Vercel
+- [x] Deploy backend to Render
+- [x] Deploy frontend to Vercel
+- [x] Cloudinary integration for persistent image storage
 - [ ] Swagger/OpenAPI documentation
 - [ ] ERD diagram
 - [ ] Backend testing (Jest + Supertest)
