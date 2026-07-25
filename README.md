@@ -2,8 +2,9 @@
 
 A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoDB, and React. Features JWT authentication with role-based access control, product management with image uploads, a shopping cart, and a complete order system.
 
-**Live Demo:** https://ecommerce-app-six-opal.vercel.app/
-**Repository:** https://github.com/hayderalhatemi/ecommerce-app
+**Live Demo:** [View Live Demo](https://ecommerce-app-six-opal.vercel.app/)
+
+**Repository:** [GitHub](https://github.com/hayderalhatemi/ecommerce-app)
 
 ---
 
