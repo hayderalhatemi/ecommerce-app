@@ -509,6 +509,14 @@ body {
   font-size: 1rem;
 }
 
+.admin-product-form input[type="file"] {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  width: 100%;
+}
+
 .admin-form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
