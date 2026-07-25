@@ -195,8 +195,8 @@ body {
 }
 
 .product-detail-image {
-  width: 400px;
-  height: 400px;
+  width: 340px;
+  height: 340px;
   object-fit: contain;
   border-radius: 8px;
 }
