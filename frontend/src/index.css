@@ -272,8 +272,11 @@ body {
 .cart-item-image {
   width: 80px;
   height: 80px;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 4px;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .cart-item-info {
