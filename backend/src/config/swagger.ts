@@ -9,8 +9,8 @@ const options: swaggerJSDoc.Options = {
       description: "REST API documentation for the E-Commerce App",
     },
     servers: [
-      { url: "http://localhost:5000/api/v1", description: "Local" },
       { url: "https://ecommerce-backend-mhw5.onrender.com/api/v1", description: "Production" },
+      { url: "http://localhost:5000/api/v1", description: "Local" },
     ],
     components: {
       securitySchemes: {
