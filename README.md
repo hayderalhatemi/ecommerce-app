@@ -32,6 +32,24 @@ A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoD
 - Form validation with React Hook Form
 - Toast notifications with react-hot-toast
 
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Product Details
+
+![Product Details](screenshots/product.png)
+
+### Shopping Cart
+
+![Shopping Cart](screenshots/cart.png)
+
+### Admin Dashboard
+
+![Admin Dashboard](screenshots/admin.png)
+
 ---
 
 ## Tech Stack
