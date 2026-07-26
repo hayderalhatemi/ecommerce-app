@@ -33,22 +33,23 @@ A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoD
 - Toast notifications with react-hot-toast
 
 ## Screenshots
+A quick overview of the main pages and user interface of the application.
 
 ### Home Page
 
-![Home Page](screenshots/home.png)
+<img src="screenshots/home.png" alt="Home Page" width="800">
 
 ### Product Details
 
-![Product Details](screenshots/product.png)
+<img src="screenshots/product.png" alt="Product Details" width="800">
 
 ### Shopping Cart
 
-![Shopping Cart](screenshots/cart.png)
+<img src="screenshots/cart.png" alt="Shopping Cart" width="800">
 
 ### Admin Dashboard
 
-![Admin Dashboard](screenshots/admin.png)
+<img src="screenshots/admin.png" alt="Admin Dashboard" width="800">
 
 ---
 
