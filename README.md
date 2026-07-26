@@ -162,6 +162,54 @@ Interactive Swagger/OpenAPI documentation:
 
 - **Local:** http://localhost:5000/api-docs
 - **Production:** https://ecommerce-backend-mhw5.onrender.com/api-docs
+
+---
+
+## Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    USER ||--o{ PRODUCT : creates
+    USER ||--o{ ORDER : places
+    PRODUCT ||--o{ ORDER_ITEM : "referenced in"
+    ORDER ||--|{ ORDER_ITEM : contains
+
+    USER {
+        ObjectId _id
+        string name
+        string email
+        string password
+        string role
+    }
+
+    PRODUCT {
+        ObjectId _id
+        string name
+        string description
+        number price
+        string image
+        string category
+        number stock
+        ObjectId createdBy FK
+    }
+
+    ORDER {
+        ObjectId _id
+        ObjectId user FK
+        number totalPrice
+        string status
+        object shippingAddress
+    }
+
+    ORDER_ITEM {
+        ObjectId product FK
+        string name
+        number price
+        number quantity
+        string image
+    }
+```
+
 ---
 
 ## Roadmap
@@ -170,7 +218,7 @@ Interactive Swagger/OpenAPI documentation:
 - [x] Deploy frontend to Vercel
 - [x] Cloudinary integration for persistent image storage
 - [x] Swagger/OpenAPI documentation
-- [ ] ERD diagram
+- [x] ERD diagram
 - [ ] Backend testing (Jest + Supertest)
 - [ ] Frontend testing (Vitest + React Testing Library)
 - [ ] CI/CD with GitHub Actions
