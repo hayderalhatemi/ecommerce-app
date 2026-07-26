@@ -10,6 +10,8 @@ import orderRoutes from "./routes/v1/order.routes";
 import productRoutes from "./routes/v1/product.routes";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger";
 
 dotenv.config();
 connectDB();
@@ -34,6 +36,9 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
+
+// Swagger docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // v1 routes
 app.use("/api/v1/auth", authRoutes);
