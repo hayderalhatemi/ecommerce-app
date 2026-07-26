@@ -154,8 +154,14 @@ Frontend runs on `http://localhost:5173`.
 | GET | `/api/v1/orders` | Get all orders | Admin |
 | PATCH | `/api/v1/orders/:id/status` | Update order status | Admin |
 
-Full API documentation coming soon (Swagger/OpenAPI).
+---
 
+## API Documentation
+
+Interactive Swagger/OpenAPI documentation:
+
+- **Local:** http://localhost:5000/api-docs
+- **Production:** https://ecommerce-backend-mhw5.onrender.com/api-docs
 ---
 
 ## Roadmap
@@ -163,7 +169,7 @@ Full API documentation coming soon (Swagger/OpenAPI).
 - [x] Deploy backend to Render
 - [x] Deploy frontend to Vercel
 - [x] Cloudinary integration for persistent image storage
-- [ ] Swagger/OpenAPI documentation
+- [x] Swagger/OpenAPI documentation
 - [ ] ERD diagram
 - [ ] Backend testing (Jest + Supertest)
 - [ ] Frontend testing (Vitest + React Testing Library)
