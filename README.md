@@ -167,7 +167,8 @@ Interactive Swagger/OpenAPI documentation:
 
 ## Testing
 
-The backend includes an automated test suite covering authentication, product, and order APIs, using Jest, Supertest, and an in-memory MongoDB instance (`mongodb-memory-server`) for isolated test runs.
+### Backend
+Automated test suite covering authentication, product, and order APIs, using Jest, Supertest, and an in-memory MongoDB instance (`mongodb-memory-server`) for isolated test runs.
 
 ```bash
 cd backend
@@ -175,6 +176,16 @@ npm test
 ```
 
 **Coverage:** 18 tests across 3 suites — user registration/login, product CRUD with role-based access, and order creation/status updates.
+
+### Frontend
+Component and state logic tests using Vitest and React Testing Library.
+
+```bash
+cd frontend
+npm run test -- --run
+```
+
+**Coverage:** 10 tests across 2 suites — cart state management (add/remove/update/clear) and Navbar rendering (auth state, role-based links, cart item count).
 
 ---
 
