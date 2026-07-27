@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
-import connectDB from "./config/db";
 import errorHandler from "./middlewares/error.middleware";
 import authRoutes from "./routes/v1/auth.routes";
 import orderRoutes from "./routes/v1/order.routes";
@@ -14,7 +13,6 @@ import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./config/swagger";
 
 dotenv.config();
-connectDB();
 
 const app = express();
 
@@ -46,8 +44,5 @@ app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/orders", orderRoutes);
 // Error handler must be last middleware
 app.use(errorHandler);
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 export default app;
