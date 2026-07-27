@@ -8,5 +8,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "types": ["jest", "node"]
-  }
+  },
+    "exclude": ["jest.config.ts", "node_modules", "dist"]
+
 }
