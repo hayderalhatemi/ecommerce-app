@@ -1,5 +1,7 @@
 # E-Commerce App
 
+![CI](https://github.com/hayderalhatemi/ecommerce-app/actions/workflows/ci.yml/badge.svg)
+
 A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoDB, and React. Features JWT authentication with role-based access control, product management with image uploads, a shopping cart, and a complete order system.
 
 **Live Demo:** [View Live Demo](https://ecommerce-app-six-opal.vercel.app/)
@@ -245,8 +247,8 @@ erDiagram
 - [x] Swagger/OpenAPI documentation
 - [x] ERD diagram
 - [x] Backend testing (Jest + Supertest)
-- [ ] Frontend testing (Vitest + React Testing Library)
-- [ ] CI/CD with GitHub Actions
+- [x] Frontend testing (Vitest + React Testing Library)
+- [x] CI/CD with GitHub Actions
 
 ---
 
