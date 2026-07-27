@@ -165,6 +165,20 @@ Interactive Swagger/OpenAPI documentation:
 
 ---
 
+## Testing
+
+The backend includes an automated test suite covering authentication, product, and order APIs, using Jest, Supertest, and an in-memory MongoDB instance (`mongodb-memory-server`) for isolated test runs.
+
+```bash
+cd backend
+npm test
+```
+
+**Coverage:** 18 tests across 3 suites — user registration/login, product CRUD with role-based access, and order creation/status updates.
+
+---
+
+
 ## Entity Relationship Diagram
 
 ```mermaid
@@ -219,7 +233,7 @@ erDiagram
 - [x] Cloudinary integration for persistent image storage
 - [x] Swagger/OpenAPI documentation
 - [x] ERD diagram
-- [ ] Backend testing (Jest + Supertest)
+- [x] Backend testing (Jest + Supertest)
 - [ ] Frontend testing (Vitest + React Testing Library)
 - [ ] CI/CD with GitHub Actions
 
