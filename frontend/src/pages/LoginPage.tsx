@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../api/axios";
 import { useAppDispatch } from "../store/hooks";
 import { setUser } from "../store/slices/authSlice";
-import api from "../api/axios";
-import toast from "react-hot-toast";
 
 interface LoginForm {
   email: string;
@@ -11,7 +11,11 @@ interface LoginForm {
 }
 
 const LoginPage = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginForm>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -34,19 +38,33 @@ const LoginPage = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" {...register("email", { required: "Email is required" })} />
-          {errors.email && <span className="error">{errors.email.message}</span>}
+          <input
+            id="email"
+            type="email"
+            {...register("email", { required: "Email is required" })}
+          />
+          {errors.email && (
+            <span className="error">{errors.email.message}</span>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" {...register("password", { required: "Password is required" })} />
-          {errors.password && <span className="error">{errors.password.message}</span>}
+          <input
+            id="password"
+            type="password"
+            {...register("password", { required: "Password is required" })}
+          />
+          {errors.password && (
+            <span className="error">{errors.password.message}</span>
+          )}
         </div>
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Logging in..." : "Login"}
         </button>
       </form>
-      <p>Don't have an account? <Link to="/register">Register</Link></p>
+      <p>
+        Don't have an account? <Link to="/register">Register</Link>
+      </p>
     </div>
   );
 };

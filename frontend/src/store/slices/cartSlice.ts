@@ -13,7 +13,7 @@ interface CartState {
   items: CartItem[];
 }
 
-const storedCart = localStorage.getItem("cart")
+const storedCart = localStorage.getItem("cart");
 const initialState: CartState = {
   items: storedCart ? JSON.parse(storedCart) : [],
 };

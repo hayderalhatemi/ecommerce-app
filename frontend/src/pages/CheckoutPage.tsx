@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { clearCart } from "../store/slices/cartSlice";
-import api from "../api/axios";
-import toast from "react-hot-toast";
 
 interface ShippingForm {
   address: string;
@@ -13,11 +13,18 @@ interface ShippingForm {
 }
 
 const CheckoutPage = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ShippingForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ShippingForm>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const items = useAppSelector((state) => state.cart.items);
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
   const onSubmit = async (data: ShippingForm) => {
     try {
@@ -35,7 +42,7 @@ const CheckoutPage = () => {
       toast.success("Order placed seccessfully!");
       navigate("/orders");
     } catch {
-      toast.error("Failed to place order. please try again.")
+      toast.error("Failed to place order. please try again.");
     }
   };
 
@@ -49,23 +56,45 @@ const CheckoutPage = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label htmlFor="address">Address</label>
-          <input id="address" type="text" {...register("address", { required: "Address is required" })} />
-          {errors.address && <span className="error">{errors.address.message}</span>}
+          <input
+            id="address"
+            type="text"
+            {...register("address", { required: "Address is required" })}
+          />
+          {errors.address && (
+            <span className="error">{errors.address.message}</span>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="city">City</label>
-          <input id="city" type="text" {...register("city", { required: "City is required" })} />
+          <input
+            id="city"
+            type="text"
+            {...register("city", { required: "City is required" })}
+          />
           {errors.city && <span className="error">{errors.city.message}</span>}
         </div>
         <div className="form-group">
           <label htmlFor="postalCode">Postal Code</label>
-          <input id="postalCode" type="text" {...register("postalCode", { required: "Postal code is required" })} />
-          {errors.postalCode && <span className="error">{errors.postalCode.message}</span>}
+          <input
+            id="postalCode"
+            type="text"
+            {...register("postalCode", { required: "Postal code is required" })}
+          />
+          {errors.postalCode && (
+            <span className="error">{errors.postalCode.message}</span>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="country">Country</label>
-          <input id="country" type="text" {...register("country", { required: "Country is required" })} />
-          {errors.country && <span className="error">{errors.country.message}</span>}
+          <input
+            id="country"
+            type="text"
+            {...register("country", { required: "Country is required" })}
+          />
+          {errors.country && (
+            <span className="error">{errors.country.message}</span>
+          )}
         </div>
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Placing order..." : "Place Order"}

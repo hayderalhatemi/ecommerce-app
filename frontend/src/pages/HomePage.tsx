@@ -25,11 +25,13 @@ const HomePage = () => {
 
   if (loading) return <p className="status-msg">Loading products...</p>;
   if (error) return <p className="status-msg error">{error}</p>;
-  if (products.length === 0) return <p className="status-msg">No products found.</p>;
+  if (products.length === 0)
+    return <p className="status-msg">No products found.</p>;
 
-  const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(search.toLowerCase()) ||
-    p.category.toLowerCase().includes(search.toLowerCase())
+  const filtered = products.filter(
+    (p) =>
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.category.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -37,16 +39,20 @@ const HomePage = () => {
       <h2 className="page-title">Products</h2>
 
       <input
-      type="text"
-      className="search-input"
-      placeholder="Search by name or category..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
+        type="text"
+        className="search-input"
+        placeholder="Search by name or category..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
 
       <div className="product-grid">
         {filtered.map((product) => (
-          <Link to={`/products/${product._id}`} key={product._id} className="product-card">
+          <Link
+            to={`/products/${product._id}`}
+            key={product._id}
+            className="product-card"
+          >
             <img
               src={product.image}
               alt={product.name}

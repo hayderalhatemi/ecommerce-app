@@ -1,6 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { removeFromCart, updateQuantity, clearCart } from "../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {
+  clearCart,
+  removeFromCart,
+  updateQuantity,
+} from "../store/slices/cartSlice";
 
 const CartPage = () => {
   const dispatch = useAppDispatch();
@@ -8,7 +12,10 @@ const CartPage = () => {
   const items = useAppSelector((state) => state.cart.items);
   const user = useAppSelector((state) => state.auth.user);
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
   const handleCheckout = () => {
     if (!user) {
@@ -18,7 +25,8 @@ const CartPage = () => {
     navigate("/checkout");
   };
 
-  if (items.length === 0) return <p className="status-msg">Your cart is empty.</p>;
+  if (items.length === 0)
+    return <p className="status-msg">Your cart is empty.</p>;
 
   return (
     <div className="cart-container">
@@ -36,20 +44,41 @@ const CartPage = () => {
                 type="number"
                 min={1}
                 value={item.quantity}
-                onChange={(e) => dispatch(updateQuantity({ _id: item._id, quantity: Number(e.target.value) }))}
+                onChange={(e) =>
+                  dispatch(
+                    updateQuantity({
+                      _id: item._id,
+                      quantity: Number(e.target.value),
+                    }),
+                  )
+                }
               />
-              <button type="button" className="remove-btn" onClick={() => dispatch(removeFromCart(item._id))}>
+              <button
+                type="button"
+                className="remove-btn"
+                onClick={() => dispatch(removeFromCart(item._id))}
+              >
                 Remove
               </button>
             </div>
-            <p className="cart-item-subtotal">€{(item.price * item.quantity).toFixed(2)}</p>
+            <p className="cart-item-subtotal">
+              €{(item.price * item.quantity).toFixed(2)}
+            </p>
           </div>
         ))}
       </div>
       <div className="cart-summary">
         <p className="cart-total">Total: €{total.toFixed(2)}</p>
-        <button type="button" className="clear-btn" onClick={() => dispatch(clearCart())}>Clear Cart</button>
-        <button type="button" className="checkout-btn" onClick={handleCheckout}>Proceed to Checkout</button>
+        <button
+          type="button"
+          className="clear-btn"
+          onClick={() => dispatch(clearCart())}
+        >
+          Clear Cart
+        </button>
+        <button type="button" className="checkout-btn" onClick={handleCheckout}>
+          Proceed to Checkout
+        </button>
       </div>
     </div>
   );

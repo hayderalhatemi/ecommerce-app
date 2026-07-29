@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../store/hooks";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
-import type { Product, Order } from "../types";
-import toast from "react-hot-toast";
-import { useForm } from "react-hook-form";
+import { useAppSelector } from "../store/hooks";
+import type { Order, Product } from "../types";
 
 interface ProductForm {
   name: string;
@@ -22,7 +22,12 @@ const AdminPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [activeTab, setActiveTab] = useState<"products" | "orders">("products");
   const [loading, setLoading] = useState(true);
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ProductForm>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ProductForm>();
 
   useEffect(() => {
     if (!user || user.role !== "admin") {
@@ -54,7 +59,9 @@ const AdminPage = () => {
   const handleStatusChange = async (orderId: string, status: string) => {
     await api.put(`/orders/${orderId}/status`, { status });
     setOrders((prev) =>
-      prev.map((o) => (o._id === orderId ? { ...o, status: status as Order["status"] } : o))
+      prev.map((o) =>
+        o._id === orderId ? { ...o, status: status as Order["status"] } : o,
+      ),
     );
     toast.success("Order status updated.");
   };
@@ -82,59 +89,103 @@ const AdminPage = () => {
     <div>
       <h2 className="page-title">Admin Dashboard</h2>
       <div className="admin-tabs">
-        <button type="button" className={activeTab === "products" ? "tab active" : "tab"} onClick={() => setActiveTab("products")}>
+        <button
+          type="button"
+          className={activeTab === "products" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("products")}
+        >
           Products ({products.length})
         </button>
-        <button type="button" className={activeTab === "orders" ? "tab active" : "tab"} onClick={() => setActiveTab("orders")}>
+        <button
+          type="button"
+          className={activeTab === "orders" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("orders")}
+        >
           Orders ({orders.length})
         </button>
       </div>
 
       {activeTab === "products" && (
-  <form onSubmit={handleSubmit(handleCreateProduct)} className="admin-product-form">
-    <h3>Add New Product</h3>
-    <div className="admin-form-grid">
-      <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input id="name" type="text" {...register("name", { required: "Required" })} />
-        {errors.name && <span className="error">{errors.name.message}</span>}
-      </div>
-      <div className="form-group">
-        <label htmlFor="category">Category</label>
-        <input id="category" type="text" {...register("category", { required: "Required" })} />
-        {errors.category && <span className="error">{errors.category.message}</span>}
-      </div>
-      <div className="form-group">
-        <label htmlFor="price">Price</label>
-        <input id="price" type="number" step="0.01" {...register("price", { required: "Required" })} />
-        {errors.price && <span className="error">{errors.price.message}</span>}
-      </div>
-      <div className="form-group">
-        <label htmlFor="stock">Stock</label>
-        <input id="stock" type="number" {...register("stock", { required: "Required" })} />
-        {errors.stock && <span className="error">{errors.stock.message}</span>}
-      </div>
-      <div className="form-group" style={{ gridColumn: "1 / -1" }}>
-        <label htmlFor="description">Description</label>
-        <input id="description" type="text" {...register("description", { required: "Required" })} />
-        {errors.description && <span className="error">{errors.description.message}</span>}
-      </div>
-      <div className="form-group">
-        <label htmlFor="image">Product Image</label>
-        <input
-          id="image"
-          type="file"
-          accept="image/png, image/jpeg, image/webp"
-          {...register("image", {required: "Image is required" })}
-        />
-        {errors.image && <span className="error">{errors.image.message}</span>}
-      </div>
-    </div>
-    <button type="submit" disabled={isSubmitting}>
-      {isSubmitting ? "Creating..." : "Create Product"}
-    </button>
-  </form>
-)}
+        <form
+          onSubmit={handleSubmit(handleCreateProduct)}
+          className="admin-product-form"
+        >
+          <h3>Add New Product</h3>
+          <div className="admin-form-grid">
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                {...register("name", { required: "Required" })}
+              />
+              {errors.name && (
+                <span className="error">{errors.name.message}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="category">Category</label>
+              <input
+                id="category"
+                type="text"
+                {...register("category", { required: "Required" })}
+              />
+              {errors.category && (
+                <span className="error">{errors.category.message}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="price">Price</label>
+              <input
+                id="price"
+                type="number"
+                step="0.01"
+                {...register("price", { required: "Required" })}
+              />
+              {errors.price && (
+                <span className="error">{errors.price.message}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="stock">Stock</label>
+              <input
+                id="stock"
+                type="number"
+                {...register("stock", { required: "Required" })}
+              />
+              {errors.stock && (
+                <span className="error">{errors.stock.message}</span>
+              )}
+            </div>
+            <div className="form-group" style={{ gridColumn: "1 / -1" }}>
+              <label htmlFor="description">Description</label>
+              <input
+                id="description"
+                type="text"
+                {...register("description", { required: "Required" })}
+              />
+              {errors.description && (
+                <span className="error">{errors.description.message}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">Product Image</label>
+              <input
+                id="image"
+                type="file"
+                accept="image/png, image/jpeg, image/webp"
+                {...register("image", { required: "Image is required" })}
+              />
+              {errors.image && (
+                <span className="error">{errors.image.message}</span>
+              )}
+            </div>
+          </div>
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Creating..." : "Create Product"}
+          </button>
+        </form>
+      )}
 
       {activeTab === "products" && (
         <div className="admin-table-wrapper">
@@ -156,7 +207,11 @@ const AdminPage = () => {
                   <td>€{product.price.toFixed(2)}</td>
                   <td>{product.stock}</td>
                   <td>
-                    <button type="button" className="remove-btn" onClick={() => handleDeleteProduct(product._id)}>
+                    <button
+                      type="button"
+                      className="remove-btn"
+                      onClick={() => handleDeleteProduct(product._id)}
+                    >
                       Delete
                     </button>
                   </td>
@@ -187,7 +242,9 @@ const AdminPage = () => {
                   <td>
                     <select
                       value={order.status}
-                      onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                      onChange={(e) =>
+                        handleStatusChange(order._id, e.target.value)
+                      }
                     >
                       <option value="pending">Pending</option>
                       <option value="processing">Processing</option>
