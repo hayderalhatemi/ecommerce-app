@@ -2,15 +2,15 @@ import "express-async-errors";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 import path from "path";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger";
 import errorHandler from "./middlewares/error.middleware";
 import authRoutes from "./routes/v1/auth.routes";
 import orderRoutes from "./routes/v1/order.routes";
 import productRoutes from "./routes/v1/product.routes";
-import helmet from "helmet";
-import rateLimit from "express-rate-limit";
-import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "./config/swagger";
 
 dotenv.config();
 
@@ -18,11 +18,13 @@ const app = express();
 
 app.use(helmet());
 
-app.use(rateLimit({
-  windowMs: 15 * 60 *1000, // minutes
-  max: 100,
-  message: { message: "Too many requests, please try again later."},
-}));
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000, // minutes
+    max: 100,
+    message: { message: "Too many requests, please try again later." },
+  }),
+);
 
 app.use(cors());
 app.use(express.json());

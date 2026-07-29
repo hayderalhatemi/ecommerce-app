@@ -1,11 +1,12 @@
 import dotenv from "dotenv";
+
 dotenv.config();
 
 import jwt from "jsonwebtoken";
 import request from "supertest";
 import app from "../app";
 import User from "../models/user.model";
-import { connectTestDb, closeTestDb, clearTestDb } from "./testDb";
+import { clearTestDb, closeTestDb, connectTestDb } from "./testDb";
 
 beforeAll(async () => {
   await connectTestDb();

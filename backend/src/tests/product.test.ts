@@ -1,11 +1,12 @@
 import dotenv from "dotenv";
+
 dotenv.config();
 
 import jwt from "jsonwebtoken";
 import request from "supertest";
 import app from "../app";
 import User from "../models/user.model";
-import { connectTestDb, closeTestDb, clearTestDb } from "./testDb";
+import { clearTestDb, closeTestDb, connectTestDb } from "./testDb";
 
 beforeAll(async () => {
   await connectTestDb();
@@ -50,9 +51,7 @@ describe("Product API", () => {
   });
 
   it("rejects product creation without a token", async () => {
-    const res = await request(app)
-      .post("/api/v1/products")
-      .send(testProduct);
+    const res = await request(app).post("/api/v1/products").send(testProduct);
     expect(res.status).toBe(401);
   });
 

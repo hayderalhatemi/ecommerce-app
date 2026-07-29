@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../app";
-import { connectTestDb, closeTestDb, clearTestDb } from "./testDb";
+import { clearTestDb, closeTestDb, connectTestDb } from "./testDb";
 
 beforeAll(async () => {
   await connectTestDb();
@@ -22,9 +22,7 @@ describe("Auth API", () => {
   };
 
   it("registers a new user", async () => {
-    const res = await request(app)
-      .post("/api/v1/auth/register")
-      .send(testUser);
+    const res = await request(app).post("/api/v1/auth/register").send(testUser);
 
     expect(res.status).toBe(201);
   });
@@ -32,9 +30,7 @@ describe("Auth API", () => {
   it("rejects duplicate email registration", async () => {
     await request(app).post("/api/v1/auth/register").send(testUser);
 
-    const res = await request(app)
-      .post("/api/v1/auth/register")
-      .send(testUser);
+    const res = await request(app).post("/api/v1/auth/register").send(testUser);
 
     expect(res.status).toBe(400);
   });
