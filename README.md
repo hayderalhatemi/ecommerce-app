@@ -1,7 +1,19 @@
 # E-Commerce App
 
-![Backend CI](https://img.shields.io/github/actions/workflow/status/hayderalhatemi/ecommerce-app/backend-ci.yml?branch=main&label=Backend%20CI&logo=githubactions)
-![Frontend CI](https://img.shields.io/github/actions/workflow/status/hayderalhatemi/ecommerce-app/frontend-ci.yml?branch=main&label=Frontend%20CI&logo=githubactions)
+
+![CI](https://github.com/hayderalhatemi/ecommerce-app/actions/workflows/ci.yml/badge.svg)
+![React](https://img.shields.io/badge/React-20232A?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js)
+![Express](https://img.shields.io/badge/Express-000000?logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb)
+![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
+![REST%20API](https://img.shields.io/badge/REST-API-blue)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?logo=swagger)
+![Jest](https://img.shields.io/badge/Jest-Tested-C21325?logo=jest)
+![Vitest](https://img.shields.io/badge/Vitest-Tested-6E9F18?logo=vitest)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)
+![Render](https://img.shields.io/badge/Backend-Render-46E3B7)
 
 A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoDB, and React. Features JWT authentication with role-based access control, product management with image uploads, a shopping cart, and a complete order system.
 
