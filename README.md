@@ -1,41 +1,45 @@
 # E-Commerce App
 
-![CI](https://github.com/hayderalhatemi/ecommerce-app/actions/workflows/ci.yml/badge.svg)
+![Backend CI](https://img.shields.io/github/actions/workflow/status/hayderalhatemi/ecommerce-app/backend-ci.yml?branch=main&label=Backend%20CI&logo=githubactions)
+![Frontend CI](https://img.shields.io/github/actions/workflow/status/hayderalhatemi/ecommerce-app/frontend-ci.yml?branch=main&label=Frontend%20CI&logo=githubactions)
 
 A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoDB, and React. Features JWT authentication with role-based access control, product management with image uploads, a shopping cart, and a complete order system.
 
-**Live Demo:** [View Live Demo](https://ecommerce-app-six-opal.vercel.app/)
+**Live Demo:** https://ecommerce-app-six-opal.vercel.app/
 
-**Repository:** [GitHub](https://github.com/hayderalhatemi/ecommerce-app)
+**Repository:** https://github.com/hayderalhatemi/ecommerce-app
 
 ---
 
 ## Features
 
 ### Backend
+
 - JWT authentication (register/login) with role-based access (`user` / `admin`)
 - Product CRUD with image uploads via Multer, stored on Cloudinary
 - Order creation, order history, and admin order management
 - Request validation with Zod
 - Centralized error handling
 - Auth and role-restriction middleware
-- Security: Helmet + rate limiting
+- Security with Helmet and rate limiting
 - Versioned REST API (`/api/v1/...`)
 - MongoDB Atlas integration via Mongoose
 
 ### Frontend
-- Redux Toolkit state management (auth + cart, persisted to localStorage)
+
+- Redux Toolkit state management (auth + cart persisted to localStorage)
 - Protected routes with role-based access control
 - Product browsing with search and filtering
 - Shopping cart with quantity updates
 - Checkout flow with shipping details
-- Order history for users
-- Admin dashboard: manage products and update order statuses
-- Form validation with React Hook Form
+- Order history
+- Admin dashboard
+- React Hook Form validation
 - Toast notifications with react-hot-toast
 
+---
+
 ## Screenshots
-A quick overview of the main pages and user interface of the application.
 
 ### Home Page
 
@@ -57,53 +61,111 @@ A quick overview of the main pages and user interface of the application.
 
 ## Tech Stack
 
-**Backend:** Node.js, Express, TypeScript, MongoDB, Mongoose, JWT, Zod, Multer, Cloudinary, Helmet, express-rate-limit
+### Backend
 
-**Deployment:** Render (backend), Vercel (frontend), MongoDB Atlas, Cloudinary
+- Node.js
+- Express
+- TypeScript
+- MongoDB
+- Mongoose
+- JWT
+- Zod
+- Multer
+- Cloudinary
+- Helmet
+- express-rate-limit
 
-**Frontend:** React, TypeScript, Vite, React Router, Redux Toolkit, Axios, React Hook Form, react-hot-toast
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- React Router
+- Redux Toolkit
+- Axios
+- React Hook Form
+- react-hot-toast
+
+### Deployment
+
+- Vercel
+- Render
+- MongoDB Atlas
+- Cloudinary
+
+### Testing
+
+- Jest
+- Supertest
+- MongoDB Memory Server
+- Vitest
+- React Testing Library
+
+### CI
+
+- GitHub Actions
 
 ---
 
 ## Project Structure
 
-```
+```text
 ecommerce-app/
-├── backend/          # Express API
+├── .github/
+│   └── workflows/
+│       ├── backend-ci.yml
+│       └── frontend-ci.yml
+├── backend/
 │   └── src/
-│       ├── controllers/
-│       ├── middleware/
-│       ├── models/
-│       ├── routes/
-│       └── app.ts
-├── frontend/         # React app
+├── frontend/
 │   └── src/
-│       ├── api/
-│       ├── components/
-│       ├── pages/
-│       ├── store/
-│       └── App.tsx
 └── README.md
 ```
 
 ---
 
-## Getting Started
+## Architecture
 
-### Prerequisites
-- Node.js (v18+)
-- MongoDB Atlas account (or local MongoDB instance)
+```text
+React Frontend
+      │
+      ▼
+Axios (HTTP)
+      │
+      ▼
+Express REST API
+      │
+      ▼
+Mongoose
+      │
+      ▼
+MongoDB Atlas
+      │
+      ▼
+Cloudinary
+```
 
-### Backend Setup
+---
+
+## Quick Start
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/hayderalhatemi/ecommerce-app.git
+cd ecommerce-app
+```
+
+### 2. Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file in `backend/`:
+Create `backend/.env`
 
-```
+```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
@@ -112,25 +174,27 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
+Run:
+
 ```bash
 npm run dev
 ```
 
-Backend runs on `http://localhost:5000`.
-
-### Frontend Setup
+### 3. Frontend
 
 ```bash
 cd frontend
 npm install
 ```
 
-Create a `.env` file in `frontend/`:
+Create `frontend/.env`
 
-```
+```env
 VITE_API_URL=http://localhost:5000/api/v1
 VITE_API_BASE=http://localhost:5000
 ```
+
+Run:
 
 ```bash
 npm run dev
@@ -142,19 +206,19 @@ Frontend runs on `http://localhost:5173`.
 
 ## API Overview
 
-| Method | Endpoint | Description | Access |
-|--------|----------|--------------|--------|
-| POST | `/api/v1/auth/register` | Register a new user | Public |
-| POST | `/api/v1/auth/login` | Log in | Public |
-| GET | `/api/v1/products` | Get all products | Public |
-| GET | `/api/v1/products/:id` | Get single product | Public |
-| POST | `/api/v1/products` | Create product | Admin |
-| PUT | `/api/v1/products/:id` | Update product | Admin |
-| DELETE | `/api/v1/products/:id` | Delete product | Admin |
-| POST | `/api/v1/orders` | Create order | User |
-| GET | `/api/v1/orders/my-orders` | Get user's orders | User |
-| GET | `/api/v1/orders` | Get all orders | Admin |
-| PATCH | `/api/v1/orders/:id/status` | Update order status | Admin |
+| Method | Endpoint | Access |
+|---------|----------|--------|
+| POST | `/api/v1/auth/register` | Public |
+| POST | `/api/v1/auth/login` | Public |
+| GET | `/api/v1/products` | Public |
+| GET | `/api/v1/products/:id` | Public |
+| POST | `/api/v1/products` | Admin |
+| PUT | `/api/v1/products/:id` | Admin |
+| DELETE | `/api/v1/products/:id` | Admin |
+| POST | `/api/v1/orders` | User |
+| GET | `/api/v1/orders/my-orders` | User |
+| GET | `/api/v1/orders` | Admin |
+| PATCH | `/api/v1/orders/:id/status` | Admin |
 
 ---
 
@@ -170,29 +234,53 @@ Interactive Swagger/OpenAPI documentation:
 ## Testing
 
 ### Backend
-Automated test suite covering authentication, product, and order APIs, using Jest, Supertest, and an in-memory MongoDB instance (`mongodb-memory-server`) for isolated test runs.
+
+Automated API tests using Jest, Supertest, and MongoDB Memory Server.
+
+Run:
 
 ```bash
 cd backend
 npm test
 ```
 
-**Coverage:** 18 tests across 3 suites — user registration/login, product CRUD with role-based access, and order creation/status updates.
+Coverage:
+
+```bash
+npm test -- --coverage
+```
+
+Current coverage includes:
+
+- Authentication API
+- Product API
+- Order API
 
 ### Frontend
-Component and state logic tests using Vitest and React Testing Library.
+
+Automated component and state management tests using Vitest and React Testing Library.
+
+Run:
 
 ```bash
 cd frontend
 npm run test -- --run
 ```
 
-**Coverage:** 10 tests across 2 suites — cart state management (add/remove/update/clear) and Navbar rendering (auth state, role-based links, cart item count).
+Coverage:
+
+```bash
+npm run test -- --coverage
+```
+
+Current coverage includes:
+
+- Shopping cart state
+- Navbar component
 
 ---
 
-
-## Entity Relationship Diagram
+## Entity Relationship Diagram (ERD)
 
 ```mermaid
 erDiagram
@@ -252,14 +340,21 @@ erDiagram
 
 ---
 
+## Contributing
+
+Contributions, suggestions, and feedback are welcome. Feel free to open an issue or submit a pull request.
+
+---
+
 ## Author
 
 **Hayder Alhatemi**
-ICT Student, Turku University of Applied Sciences (TUAS)
-[GitHub](https://github.com/hayderalhatemi)
+
+- GitHub: https://github.com/hayderalhatemi
+- LinkedIn: https://www.linkedin.com/in/hayderalhatemi/
 
 ---
 
 ## License
 
-This project is for educational and portfolio purposes.
+This project is licensed under the MIT License.
