@@ -120,6 +120,9 @@ A full-stack e-commerce platform built with Node.js, Express, TypeScript, MongoD
 
 ---
 
+## Project Structure
+
+```text
 ecommerce-app/
 ├── .github/
 │   └── workflows/
