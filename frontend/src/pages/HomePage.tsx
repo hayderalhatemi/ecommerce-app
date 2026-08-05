@@ -6,10 +6,15 @@ import type { Product } from "../types";
 const HomePage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showServerMessage, setShowServerMessage] = useState(false);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowServerMessage(true);
+    }, 3000);
+
     const fetchProducts = async () => {
       try {
         const res = await api.get("/products");
@@ -17,13 +22,27 @@ const HomePage = () => {
       } catch {
         setError("Failed to load products.");
       } finally {
+        clearTimeout(timer);
         setLoading(false);
       }
     };
+
     fetchProducts();
+
+    return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <p className="status-msg">Loading products...</p>;
+  if (loading) {
+    return (
+      <div className="status-msg">
+        <p>Loading products...</p>
+
+        {showServerMessage && (
+          <p>The server is starting. This may take 30-60 seconds.</p>
+        )}
+      </div>
+    );
+  }
   if (error) return <p className="status-msg error">{error}</p>;
   if (products.length === 0)
     return <p className="status-msg">No products found.</p>;
