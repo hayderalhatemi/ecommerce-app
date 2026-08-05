@@ -22,6 +22,7 @@ const AdminPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [activeTab, setActiveTab] = useState<"products" | "orders">("products");
   const [loading, setLoading] = useState(true);
+  const [showServerMessage, setShowServerMessage] = useState(false);
   const {
     register,
     handleSubmit,
@@ -34,19 +35,29 @@ const AdminPage = () => {
       navigate("/");
       return;
     }
+
+    const timer = setTimeout(() => {
+      setShowServerMessage(true);
+    }, 3000);
+
     const fetchData = async () => {
       try {
         const [productsRes, ordersRes] = await Promise.all([
           api.get("/products"),
           api.get("/orders"),
         ]);
+
         setProducts(productsRes.data);
         setOrders(ordersRes.data);
       } finally {
+        clearTimeout(timer);
         setLoading(false);
       }
     };
+
     fetchData();
+
+    return() => clearTimeout(timer);
   }, [user, navigate]);
 
   const handleDeleteProduct = async (id: string) => {
@@ -83,7 +94,17 @@ const AdminPage = () => {
     toast.success("Product created!");
   };
 
-  if (loading) return <p className="status-msg">Loading...</p>;
+  if (loading) {
+    return (
+      <div className="status-msg">
+        <p>Loading admin dashboard...</p>
+
+        {showServerMessage && (
+          <p>The backend server is waking up. This may take 30-60 seconds.</p>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div>
