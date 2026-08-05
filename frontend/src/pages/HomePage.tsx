@@ -38,7 +38,7 @@ const HomePage = () => {
         <p>Loading products...</p>
 
         {showServerMessage && (
-          <p>The server is starting. This may take 30-60 seconds.</p>
+          <p>The backend server is waking up. This may take 30-60 seconds.</p>
         )}
       </div>
     );
