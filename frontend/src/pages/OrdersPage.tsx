@@ -5,23 +5,42 @@ import type { Order } from "../types";
 const OrdersPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showServerMessage, setShowServerMessage] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowServerMessage(true);
+    }, 3000);
+
     const fetchOrders = async () => {
       try {
         const res = await api.get("/orders/my-orders");
         setOrders(res.data);
       } catch {
-        setError("Failed to load orders.");
+        setError("Failed to load orders.")
       } finally {
+        clearTimeout(timer);
         setLoading(false);
       }
     };
+
     fetchOrders();
+
+    return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <p className="status-msg">Loading orders...</p>;
+  if (loading) {
+    return (
+      <div className="status-msg">
+        <p>Loading orders...</p>
+
+        {showServerMessage && (
+          <p>The backend server is waking up. This may take 30-60 seconds.</p>
+        )}
+      </div>
+    );
+  }
   if (error) return <p className="status-msg error">{error}</p>;
   if (orders.length === 0) return <p className="status-msg">No orders yet.</p>;
 
