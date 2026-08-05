@@ -583,3 +583,19 @@ body {
   padding: 12px;
   box-sizing: border-box;
 }
+
+.status-msg {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.status-msg p:last-child {
+  margin-top: 0.5rem;
+  color: #777;
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin-inline: auto;
+}
