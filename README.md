@@ -338,6 +338,76 @@ erDiagram
 
 ---
 
+## UML Diagrams
+
+### Use Case Diagram
+
+The use case diagram shows the main actions available to customers and administrators in the e-commerce system.
+
+```mermaid
+flowchart LR
+    Visitor((Visitor))
+    User((User))
+    Admin((Admin))
+
+    subgraph Ecommerce["E-Commerce System"]
+        Browse([Browse & Search Products])
+        Register([Register / Login])
+        Cart([Manage Shopping Cart])
+        Checkout([Checkout / Place Order])
+        History([View Order History])
+        Products([Manage Products])
+        Orders([Manage Orders])
+    end
+
+    Visitor --> Browse
+    Visitor --> Register
+
+    User --> Browse
+    User --> Cart
+    User --> Checkout
+    User --> History
+
+    Admin --> Products
+    Admin --> Orders
+```
+
+### Sequence Diagram — Place Order
+
+The sequence diagram shows how an authenticated user places an order through the frontend, REST API, authentication middleware, and database.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as React Frontend
+    participant API as Express REST API
+    participant Auth as JWT Auth Middleware
+    participant Controller as Order Controller
+    participant Product as Product Model
+    participant Order as Order Model
+    participant DB as MongoDB
+
+    User->>UI: Review cart and enter shipping details
+    User->>UI: Place order
+    UI->>API: POST /api/v1/orders + JWT
+    API->>Auth: Verify JWT
+    Auth-->>API: Authenticated user
+    API->>Controller: Create order
+    Controller->>Product: Validate products and stock
+    Product->>DB: Query products
+    DB-->>Product: Product data
+    Product-->>Controller: Products and prices
+    Controller->>Order: Create order
+    Order->>DB: Save order
+    DB-->>Order: Order saved
+    Order-->>Controller: Created order
+    Controller-->>API: Order response
+    API-->>UI: Order created
+    UI-->>User: Show order confirmation
+```
+
+---
+
 ## Roadmap
 
 - [x] Deploy backend to Render
